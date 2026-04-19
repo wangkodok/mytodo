@@ -56,6 +56,16 @@ export default function Home() {
     setEditId(null);
   };
 
+  // 삭제
+  const onDelete = async (id: number) => {
+    await fetch("/api/todo", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    });
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <div className="flex flex-col items-center gap-4 p-8">
       {/* 입력 */}
@@ -102,6 +112,13 @@ export default function Home() {
                     className="border px-4 py-1"
                   >
                     수정
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onDelete(todo.id)}
+                    className="border px-4 py-1 text-red-500"
+                  >
+                    삭제
                   </button>
                 </>
               )}

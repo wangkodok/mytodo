@@ -39,3 +39,17 @@ export async function PUT(req: NextRequest) {
   if (error) return NextResponse.json({ error }, { status: 500 });
   return NextResponse.json({ data });
 }
+
+// 삭제
+export async function DELETE(req: NextRequest) {
+  const { id } = await req.json();
+
+  const { data, error } = await supabase
+    .from('description')
+    .delete()
+    .eq('id', id)
+    .select();
+
+  if (error) return NextResponse.json({ error }, { status: 500 });
+  return NextResponse.json({ data });
+}
