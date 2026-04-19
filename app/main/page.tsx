@@ -68,12 +68,16 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center gap-4 p-8">
+      <h1 className="text-[1.5rem] font-bold">
+        내용을 입력하고 저장하면 모두가 볼 수 있어요!
+      </h1>
       {/* 입력 */}
       <div className="flex gap-2">
         <input
           type="text"
           value={text}
           className="border px-2 py-1"
+          placeholder="내용을 입력하세요."
           onChange={(e) => setText(e.target.value)}
         />
         <button type="button" onClick={onSubmit} className="border px-4 py-1">
